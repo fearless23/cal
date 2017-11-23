@@ -1,0 +1,45 @@
+<div class="fbox-sb p-x p-t bg-white2">
+  <h2>People</h2>
+  <button routerLink="add">Create Person</button>
+</div>
+
+<div class="inline-loader" *ngIf="!(people | async)"></div>
+
+<ng-container *ngIf="(people | async)?.length===0">
+  <div class="blankslate">
+    <img class="no-project-img" src="assets/img/projects.png">
+    <h2 class="bold text-blue"> Oops no person!! </h2>
+    <p class=""> Click here to add a Person
+      <a routerLink="add">Create Person</a>
+    </p>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="(people | async)?.length !==0">
+  <div class="p-x-md m-t-md">
+
+    <div class="fbox">
+      <input class="form-control m-r" type="search" placeholder="Find..." [(ngModel)]="term">
+      <select name="" id="" class="form-control form-select" [(ngModel)]="category">
+        <option value="" selected disabled hidden>Type</option>
+        <option value="all">Any</option>
+        <option value="coder">Programmer</option>
+        <option value="designer">Designer</option>
+      </select>
+    </div>
+    
+    <div class="card-group-container">
+
+      <div class="card-container" *ngFor="let k of people | async | filter: 'category': category | sts: term">
+        <div class="title">{{k.name}} </div>
+        <div class="description">{{k.description}}</div>
+        <div class="fbox-sb">
+          <button type="button" class="sm block" routerLink="../person/{{k.pushKey}}">View</button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</ng-container>

@@ -1,0 +1,47 @@
+<div class="fbox-sb p-x p-y-md bg-white2">
+  <button class="btn-clear" routerLink="/people"> Back to People</button>
+</div>
+<div class="p-x-md m-t-md">
+
+  <div class="form-container p-x-md m-t-md">
+    <h2 class="underlined-title"> Create Project</h2>
+    <form [formGroup]="addPersonForm" (ngSubmit)="addPerson(addPersonForm.value)">
+
+      <!--============  NAME  =========================-->
+      <div class="form-group">
+        <label>Person Name</label>
+        <input type="text" class="form-control input-md" placeholder="John Doe" formControlName="name">
+      </div>
+
+      <!--============  CATEGORY (radio tabs) =========================-->
+      <div class="form-group">
+        <label>Choose a Category</label>
+           <!-- TODO: give some description -->
+        <div class="radio-tabs">
+
+          <input type="radio" class="hidden" id="1" name="category" value="coder" formControlName="category">
+          <label for="1">Programmer</label>
+
+          <input type="radio" class="hidden" id="2" name="category" value="designer" formControlName="category">
+          <label for="2">Designer</label>
+
+          <!-- <input type="radio" class="hidden" id="social" name="category" value="social" formControlName="category">
+          <label for="social">Social</label> -->
+
+        </div>
+      </div>
+
+      <!--============  BIO  =========================-->
+      <div class="form-group">
+        <label>Bio</label>
+        <textarea class="form-control" placeholder="This is a great designer i found." formControlName="description">
+      </textarea>
+      </div>
+
+      <button type="submit" class="block p-y-md xs" value="Submit Form" [disabled]="!addPersonForm.valid">
+        Add Person
+      </button>
+
+    </form>
+  </div>
+</div>
